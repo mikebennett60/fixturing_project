@@ -1,0 +1,230 @@
+{
+	"version": 1,
+	"allow_edit": true,
+	"plugins": [],
+	"panes": [
+		{
+			"title": "Ambient Light",
+			"width": 1,
+			"row": {
+				"3": 5
+			},
+			"col": {
+				"3": 3
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "text_widget",
+					"settings": {
+						"title": "",
+						"size": "regular",
+						"value": "datasources[\"mqtt\"][\"msg\"][\"lux\"]",
+						"sparkline": true,
+						"animate": false
+					}
+				}
+			]
+		},
+		{
+			"title": "Communication",
+			"width": 1,
+			"row": {
+				"3": 9
+			},
+			"col": {
+				"3": 1
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "indicator",
+					"settings": {
+						"title": "Left",
+						"value": "datasources[\"mqtt\"][\"msg\"][\"left\"]"
+					}
+				},
+				{
+					"type": "indicator",
+					"settings": {
+						"title": "Right",
+						"value": "datasources[\"mqtt\"][\"msg\"][\"right\"]"
+					}
+				},
+				{
+					"type": "indicator",
+					"settings": {
+						"title": "Reed",
+						"value": "datasources[\"mqtt\"][\"msg\"][\"reed\"]"
+					}
+				}
+			]
+		},
+		{
+			"title": "Movement",
+			"width": 1,
+			"row": {
+				"3": 5
+			},
+			"col": {
+				"3": 2
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "sparkline",
+					"settings": {
+						"title": "",
+						"value": [
+							"datasources[\"mqtt\"][\"msg\"][\"accX\"]",
+							"datasources[\"mqtt\"][\"msg\"][\"accY\"]",
+							"datasources[\"mqtt\"][\"msg\"][\"accZ\"]"
+						],
+						"include_legend": true,
+						"legend": "X acceleration, Y acceleration, Z acceleration"
+					}
+				}
+			]
+		},
+		{
+			"title": "Temperature",
+			"width": 1,
+			"row": {
+				"3": 11
+			},
+			"col": {
+				"3": 3
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "gauge",
+					"settings": {
+						"title": "Ambient",
+						"value": "datasources[\"mqtt\"][\"msg\"][\"ambtemp\"]",
+						"units": "°C",
+						"min_value": "-10",
+						"max_value": "35"
+					}
+				},
+				{
+					"type": "gauge",
+					"settings": {
+						"title": "Object (IR)",
+						"value": "datasources[\"mqtt\"][\"msg\"][\"objtemp\"]",
+						"units": "°C",
+						"min_value": "-10",
+						"max_value": "35"
+					}
+				}
+			]
+		},
+		{
+			"title": "Environmental",
+			"width": 1,
+			"row": {
+				"3": 12
+			},
+			"col": {
+				"3": 2
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "gauge",
+					"settings": {
+						"title": "Humidity",
+						"value": "datasources[\"mqtt\"][\"msg\"][\"humidity\"]",
+						"units": "%",
+						"min_value": 0,
+						"max_value": 100
+					}
+				},
+				{
+					"type": "gauge",
+					"settings": {
+						"title": "Pressure",
+						"value": "datasources[\"mqtt\"][\"msg\"][\"millibars\"]",
+						"units": "millibar",
+						"min_value": "100",
+						"max_value": "1200"
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"3": 5
+			},
+			"col": {
+				"3": 1
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "actuator",
+					"settings": {
+						"value": "datasources[\"mqtt\"][\"msg\"][\"knock\"]",
+						"on_text": "Damage Detected",
+						"off_text": "Damage Not Detected"
+					}
+				}
+			]
+		},
+		{
+			"title": "Live Fixture Dashboard",
+			"width": 1,
+			"row": {
+				"3": 1
+			},
+			"col": {
+				"3": 1
+			},
+			"col_width": "3",
+			"widgets": [
+				{
+					"type": "text_widget",
+					"settings": {
+						"title": "Fixture ID",
+						"size": "regular",
+						"value": "datasources[\"mqtt\"][\"msg\"][\"_id\"]",
+						"animate": true
+					}
+				}
+			]
+		}
+	],
+	"datasources": [
+		{
+			"name": "mqtt",
+			"type": "paho_mqtt",
+			"settings": {
+				"server": "localhost",
+				"port": 9008,
+				"use_ssl": false,
+				"client_id": "fff888888888",
+				"username": "",
+				"password": "",
+				"topic": "jpmens/cc2650",
+				"json_data": true,
+				"name": "mqtt"
+			}
+		},
+		{
+			"name": "mqttextras",
+			"type": "paho_mqtt",
+			"settings": {
+				"server": "localhost",
+				"port": 9008,
+				"use_ssl": false,
+				"client_id": "",
+				"username": "",
+				"password": "",
+				"topic": "jpmens/cc2650/firmwarerev",
+				"json_data": false
+			}
+		}
+	],
+	"columns": 3
+}
