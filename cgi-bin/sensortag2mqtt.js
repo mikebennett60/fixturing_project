@@ -189,14 +189,47 @@ var myInterval = setInterval (restartScanning,4000);
 
 function publishData() {
 	var payload = JSON.stringify(data);
-
-	console.log(payload);
+	
+	//if (typeof(tag) != undefined && connected == 1) {
+	
+	////console.log(SensorTag);
+	
+	//var mqttextras = {'header' : [
+		              //'TagID',
+		              //'TagType',
+					  //'Battery',
+					  //'Signal Strength'],
+					  //'data' : 
+					  //[
+					    //{ 'TagID' : tag.id,
+						  //'TagType' : tag.type,
+						  //'Battery' : "N/A",
+						  //'Signal Strength' : tag.rssi}
+						//]};
+						  
+	
+	//} else {
+		//mqttextras = {'header' : [
+		                //'TagID',
+		                //'TagType',
+					   //'Battery',
+					   //'Signal Strength'],
+					   //'data' : [
+					  //{  'TagID' : "Not Connected",
+						  //'TagType' : "N/A",
+						  //'Battery' : "N/A",
+						//'Signal Strength' : "0" }
+						//]};
+	
+	//}
+	//console.log(mqttextras);
+	//mqtt.publish('mqttextras',JSON.stringify(mqttextras))
 	mqtt.publish(topic, payload);
 }
 
 function mod(key, val) {
 	if (data[key] != val) {
-		console.log(key + " changed to " + val);
+		//console.log(key + " changed to " + val);
 		data[key] = val;
 		publishData();
 	}
@@ -220,6 +253,8 @@ function enableSensors() {
 		tag.enableIrTemperature(n_irtemp);
 		tag.enableAccelerometer(n_accel);
 		//tag.enableMagnetometer(n_magnet);
+		
+		tag.onBatteryLevelChange
 
 		tag.notifySimpleKey(function() {
 			tag.on('simpleKeyChange', function(left, right, reed) {
@@ -403,6 +438,7 @@ function publishFixtures() {
 							if (fixture_list['data'].hasOwnProperty(k)) {
 								if (fixture_list['data'][k]['ID'].replace(/:/g,'').toLowerCase() ==  tag.id) {
 									fixture_list['data'][k]['Connected'] = 'True';
+									data._name = fixture_list['data'][k]['Name']; 
 								} else {
 									fixture_list['data'][k]['Connected'] = 'False';
 								}
@@ -414,6 +450,11 @@ function publishFixtures() {
 					// If you scan at the same time, seems to cause trouble
 					SensorTag.stopDiscoverAll(onDiscover);
 					// Connect new sensortag
+					data._id = tag.id;
+					data._type = tag.type;
+					
+					//console.log(tag);
+					
 					tag.connectAndSetUp(enableSensors);		
 				}
 			

@@ -4,10 +4,37 @@
 	"plugins": [],
 	"panes": [
 		{
+			"title": "Ambient Light",
+			"width": 1,
+			"row": {
+				"3": 15,
+				"4": 9,
+				"5": 9
+			},
+			"col": {
+				"3": 3,
+				"4": 4,
+				"5": 3
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "text_widget",
+					"settings": {
+						"title": "",
+						"size": "regular",
+						"value": "datasources[\"mqtt\"][\"msg\"][\"lux\"]",
+						"sparkline": true,
+						"animate": false
+					}
+				}
+			]
+		},
+		{
 			"title": "Movement",
 			"width": 1,
 			"row": {
-				"3": 5,
+				"3": 1,
 				"4": 9,
 				"5": 9
 			},
@@ -48,7 +75,7 @@
 		{
 			"width": 1,
 			"row": {
-				"3": 5,
+				"3": 1,
 				"4": 9,
 				"5": 9
 			},
@@ -63,8 +90,8 @@
 					"type": "actuator",
 					"settings": {
 						"value": "datasources[\"mqtt\"][\"msg\"][\"knock\"]",
-						"urlOn": "http://localhost/control.jscript?topic=controlTag&message=none",
-						"urlOff": "http://localhost/control.jscript?topic=controlTag&message=mute",
+						"urlOn": "http://localhost/control.jscript?topic=controlTag&message=mute",
+						"urlOff": "http://localhost/control.jscript?topic=controlTag&message=none",
 						"on_text": "Damage Detected (Silence Alarm)",
 						"off_text": "Damage Not Detected"
 					}
@@ -72,79 +99,11 @@
 				{
 					"type": "actuator",
 					"settings": {
-						"value": "datasources[\"mqtt\"][\"msg\"][\"_id\"]==\"0\"",
-						"urlOn": "http://localhost/control.jscript?topic=controlTag&message=locate",
-						"urlOff": "http://localhost/control.jscript?topic=controlTag&message=locate",
-						"on_text": "Locate Fixture",
-						"off_text": "Locate Fixture"
-					}
-				},
-				{
-					"type": "actuator",
-					"settings": {
-						"value": "datasources[\"mqtt\"][\"msg\"][\"_id\"] == \"0\"",
+						"value": "0",
 						"urlOn": "http://localhost/control.jscript?topic=controlTag&message=mute",
-						"urlOff": "http://localhost/control.jscript?topic=controlTag&message=mute",
-						"on_text": "Mute Alarm",
-						"off_text": "Mute Alarm"
-					}
-				}
-			]
-		},
-		{
-			"title": "Location",
-			"width": 1,
-			"row": {
-				"3": 5
-			},
-			"col": {
-				"3": 1
-			},
-			"col_width": 1,
-			"widgets": [
-				{
-					"type": "picture",
-					"settings": {
-						"src": "http://localhost/bay2.jpg",
-						"refresh": 0
-					}
-				}
-			]
-		},
-		{
-			"title": "Communication",
-			"width": 1,
-			"row": {
-				"3": 13,
-				"4": 15,
-				"5": 15
-			},
-			"col": {
-				"3": 3,
-				"4": 2,
-				"5": 1
-			},
-			"col_width": 1,
-			"widgets": [
-				{
-					"type": "indicator",
-					"settings": {
-						"title": "Left",
-						"value": "datasources[\"mqtt\"][\"msg\"][\"left\"]"
-					}
-				},
-				{
-					"type": "indicator",
-					"settings": {
-						"title": "Right",
-						"value": "datasources[\"mqtt\"][\"msg\"][\"right\"]"
-					}
-				},
-				{
-					"type": "indicator",
-					"settings": {
-						"title": "Reed",
-						"value": "datasources[\"mqtt\"][\"msg\"][\"reed\"]"
+						"urlOff": "http://localhost/control.jscript?topic=controlTag&message=locate",
+						"on_text": "Locate Fixture (Clear Alarm)",
+						"off_text": "Locate Fixture"
 					}
 				}
 			]
@@ -153,7 +112,7 @@
 			"title": "Temperature",
 			"width": 1,
 			"row": {
-				"3": 15,
+				"3": 11,
 				"4": 15,
 				"5": 15
 			},
@@ -190,7 +149,7 @@
 			"title": "Environmental",
 			"width": 1,
 			"row": {
-				"3": 17,
+				"3": 13,
 				"4": 16,
 				"5": 16
 			},
@@ -224,33 +183,45 @@
 			]
 		},
 		{
-			"title": "Ambient Light",
+			"title": "Communication",
 			"width": 1,
 			"row": {
-				"3": 21,
-				"4": 9,
-				"5": 9
+				"3": 7,
+				"4": 15,
+				"5": 15
 			},
 			"col": {
 				"3": 3,
-				"4": 4,
-				"5": 3
+				"4": 2,
+				"5": 1
 			},
 			"col_width": 1,
 			"widgets": [
 				{
-					"type": "text_widget",
+					"type": "indicator",
 					"settings": {
-						"title": "",
-						"size": "regular",
-						"value": "datasources[\"mqtt\"][\"msg\"][\"lux\"]",
-						"sparkline": true,
-						"animate": false
+						"title": "Left",
+						"value": "datasources[\"mqtt\"][\"msg\"][\"left\"]"
+					}
+				},
+				{
+					"type": "indicator",
+					"settings": {
+						"title": "Right",
+						"value": "datasources[\"mqtt\"][\"msg\"][\"right\"]"
+					}
+				},
+				{
+					"type": "indicator",
+					"settings": {
+						"title": "Reed",
+						"value": "datasources[\"mqtt\"][\"msg\"][\"reed\"]"
 					}
 				}
 			]
 		},
 		{
+			"title": "Location",
 			"width": 1,
 			"row": {
 				"3": 1
@@ -258,14 +229,13 @@
 			"col": {
 				"3": 1
 			},
-			"col_width": "3",
+			"col_width": 1,
 			"widgets": [
 				{
-					"type": "text_widget",
+					"type": "picture",
 					"settings": {
-						"size": "regular",
-						"value": "datasources[\"mqtt\"][\"msg\"][\"_name\"] +\"(\"+datasources[\"mqtt\"][\"msg\"][\"_id\"]+\")\"",
-						"animate": true
+						"src": "http://localhost/bay2.jpg",
+						"refresh": 0
 					}
 				}
 			]
