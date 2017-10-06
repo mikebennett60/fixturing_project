@@ -1,0 +1,27 @@
+<? 
+var mqttserver = require('mqtt');
+
+var mqtt = mqttserver.connect(process.env.BROKERURL || 'mqtt://localhost:1883')
+
+
+mqtt.on('connect', function (connack) {
+	write('connected<br>');
+	if (typeof(request.query['topic']) != 'undefined' &&
+	    typeof(request.query['message']) != 'undefined') {
+		  var topic = request.query['topic'];
+		  var message = request.query['message'];
+		
+		if (topic=='controlTag' || topic=='selectTag') {
+		    mqtt.publish(topic, message);
+		    write(topic+":"+message+"<br>")
+		    }
+	}
+	mqtt.end();
+})
+	
+mqtt.on('close', function () {
+	write('disconnected<br>');
+	process.exit(0);
+})
+
+  ?>

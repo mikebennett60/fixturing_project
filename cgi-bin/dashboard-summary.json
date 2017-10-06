@@ -1,0 +1,166 @@
+{
+	"version": 1,
+	"allow_edit": true,
+	"plugins": [],
+	"panes": [
+		{
+			"title": "",
+			"width": 1,
+			"row": {
+				"3": 1,
+				"4": 1,
+				"5": 1
+			},
+			"col": {
+				"3": 1,
+				"4": 2,
+				"5": 1
+			},
+			"col_width": "3",
+			"widgets": [
+				{
+					"type": "text_widget",
+					"settings": {
+						"title": "",
+						"size": "regular",
+						"value": "Fixture List",
+						"animate": true
+					}
+				},
+				{
+					"type": "list",
+					"settings": {
+						"title": "",
+						"show_header": true,
+						"value": "datasources[\"fixtures\"][\"msg\"]"
+					}
+				},
+				{
+					"type": "text_widget",
+					"settings": {
+						"title": "",
+						"size": "regular",
+						"value": "Select a Fixture",
+						"animate": true
+					}
+				},
+				{
+					"type": "actuator",
+					"settings": {
+						"value": "datasources[\"fixtures\"][\"msg\"][\"data\"][0][\"Connected\"] == \"True\"",
+						"urlOn": "http://localhost/control.jscript?topic=selectTag&message=24:71:89:CC:4B:05",
+						"urlOff": "http://localhost/control.jscript?topic=controlTag&message=disconnect",
+						"on_text": "\"Disconnect from \"+datasources[\"fixtures\"][\"msg\"][\"data\"][0][\"Name\"]",
+						"off_text": "\"Connect to \"+datasources[\"fixtures\"][\"msg\"][\"data\"][0][\"Name\"]"
+					}
+				},
+				{
+					"type": "actuator",
+					"settings": {
+						"value": "datasources[\"fixtures\"][\"msg\"][\"data\"][1][\"Connected\"] == \"True\"",
+						"urlOn": "http://localhost/control.jscript?topic=selectTag&message=24:71:89:CF:F4:07",
+						"urlOff": "http://localhost/control.jscript?topic=controlTag&message=disconnect",
+						"on_text": "\"Disconnect from \"+datasources[\"fixtures\"][\"msg\"][\"data\"][1][\"Name\"]",
+						"off_text": "\"Connect to \"+datasources[\"fixtures\"][\"msg\"][\"data\"][1][\"Name\"]"
+					}
+				},
+				{
+					"type": "actuator",
+					"settings": {
+						"value": "datasources[\"fixtures\"][\"msg\"][\"data\"][2][\"Connected\"] == \"True\"",
+						"urlOn": "http://localhost/control.jscript?topic=selectTag&message=54:6C:0E:53:1C:6A",
+						"urlOff": "http://localhost/control.jscript?topic=controlTag&disconnect",
+						"on_text": "\"Disconnect from \"+datasources[\"fixtures\"][\"msg\"][\"data\"][2][\"Name\"]",
+						"off_text": "\"Connect to \"+datasources[\"fixtures\"][\"msg\"][\"data\"][2][\"Name\"]"
+					}
+				},
+				{
+					"type": "actuator",
+					"settings": {
+						"value": "datasources[\"fixtures\"][\"msg\"][\"data\"][3][\"Connected\"] == \"True\"",
+						"urlOn": "http://localhost/control.jscript?topic=selectTag&message=B0:91:22:F7:43:85",
+						"urlOff": "http://localhost/control.jscript?topic=controlTag&disconnect",
+						"on_text": "\"Disconnect from \"+datasources[\"fixtures\"][\"msg\"][\"data\"][3][\"Name\"]",
+						"off_text": "\"Connect to \"+datasources[\"fixtures\"][\"msg\"][\"data\"][3][\"Name\"]"
+					}
+				},
+				{
+					"type": "actuator",
+					"settings": {
+						"value": "datasources[\"fixtures\"][\"msg\"][\"data\"][4][\"Connected\"] == \"True\"",
+						"urlOn": "http://localhost/control.jscript?topic=selectTag&message=54:6C:0E:53:16:83",
+						"urlOff": "http://localhost/control.jscript?topic=controlTag&disconnect",
+						"on_text": "\"Disconnect from \"+datasources[\"fixtures\"][\"msg\"][\"data\"][4][\"Name\"]",
+						"off_text": "\"Connect to \"+datasources[\"fixtures\"][\"msg\"][\"data\"][4][\"Name\"]"
+					}
+				},
+				{
+					"type": "actuator",
+					"settings": {
+						"value": "datasources[\"fixtures\"][\"msg\"][\"data\"][5][\"Connected\"] == \"True\"",
+						"urlOn": "http://localhost/control.jscript?topic=selectTag&message=54:6C:0E:53:1C:6A",
+						"urlOff": "http://localhost/control.jscript?topic=controlTag&disconnect",
+						"on_text": "\"Disconnect from \"+datasources[\"fixtures\"][\"msg\"][\"data\"][5][\"Name\"]",
+						"off_text": "\"Connect to \"+datasources[\"fixtures\"][\"msg\"][\"data\"][5][\"Name\"]"
+					}
+				},
+				{
+					"type": "actuator",
+					"settings": {
+						"value": "datasources[\"fixtures\"][\"msg\"][\"data\"][6][\"Connected\"] == \"True\"",
+						"urlOn": "http://localhost/control.jscript?topic=selectTag&message=B0:91:22:F6:68:82",
+						"urlOff": "http://localhost/control.jscript?topic=controlTag&disconnect",
+						"on_text": "\"Disconnect from \"+datasources[\"fixtures\"][\"msg\"][\"data\"][6][\"Name\"]",
+						"off_text": "\"Connect to \"+datasources[\"fixtures\"][\"msg\"][\"data\"][6][\"Name\"]"
+					}
+				}
+			]
+		}
+	],
+	"datasources": [
+		{
+			"name": "mqtt",
+			"type": "paho_mqtt",
+			"settings": {
+				"server": "localhost",
+				"port": 9008,
+				"use_ssl": false,
+				"client_id": "fff888888888",
+				"username": "",
+				"password": "",
+				"topic": "jpmens/cc2650",
+				"json_data": true,
+				"name": "mqtt"
+			}
+		},
+		{
+			"name": "mqttextras",
+			"type": "paho_mqtt",
+			"settings": {
+				"server": "localhost",
+				"port": 9008,
+				"use_ssl": false,
+				"client_id": "",
+				"username": "",
+				"password": "",
+				"topic": "jpmens/cc2650/firmwarerev",
+				"json_data": false
+			}
+		},
+		{
+			"name": "fixtures",
+			"type": "paho_mqtt",
+			"settings": {
+				"server": "localhost",
+				"port": 9008,
+				"use_ssl": false,
+				"client_id": "",
+				"username": "",
+				"password": "",
+				"topic": "fixture_list",
+				"json_data": true
+			}
+		}
+	],
+	"columns": 3
+}
